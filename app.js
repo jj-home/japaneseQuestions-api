@@ -76,9 +76,10 @@ app.route("/questions")
 
 
 //////////////////////One Random Question //////////////////////////////
+
+//for now, open this one up to the world without authenticaiton
+
 app.get("/questions/random",function(req,res){
-    
-    if(verifyUser(req.body.api_key)){
         Question.find({},function(err,results){
             if(err){
                 res.send(err);
@@ -89,9 +90,6 @@ app.get("/questions/random",function(req,res){
                 res.send(results[randIndex]);
             }
         });
-    }else{
-        res.send("Not authorized"); 
-    }
     
 });
 
