@@ -87,13 +87,31 @@ app.get("/questions/random",function(req,res){
                 res.send("There are no quesitons in the collection");
             }else{
                 const randIndex = Math.floor(Math.random()*results.length);
-                res.send(results[randIndex]);
+                //res.send(results[randIndex]);
+                res.send("<h1 style='text-align:center;width:70%;margin:8% auto auto auto;'>" + results[randIndex].jpn + "</h1><hr>");
+
             }
         });
     
 });
 
+app.get("/questions/randomDual",function(req,res){
+    Question.find({},function(err,results){
+        if(err){
+            res.send(err);
+        }else if(results.length <= 0){
+            res.send("There are no quesitons in the collection");
+        }else{
+            const randIndex = Math.floor(Math.random()*results.length);
+            //res.send(results[randIndex]);
+            const message = "<h1 style='text-align:center;width:70%;margin:8% auto auto auto;'>" + results[randIndex].jpn + "</h1><hr>" +
+                            "<h1 style='text-align:center;width:70%;margin:0 auto auto auto;'>" + results[randIndex].eng + "</h1>";
+            res.send(message);
 
+        }
+    });
+
+});
 
 
 
