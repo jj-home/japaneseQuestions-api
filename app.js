@@ -27,7 +27,8 @@ mongoose.connect(process.env.CONNECT_URI, {user: process.env.USER, pass: process
 
 const questionSchema = new mongoose.Schema({
     eng: String,
-    jpn: String
+    jpn: String,
+    level: Number
 });
 
 const Question = module.exports = mongoose.model("Question",questionSchema);
